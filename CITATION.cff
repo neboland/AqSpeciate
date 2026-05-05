@@ -1,0 +1,25 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: AqSpeciate
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Nathan
+    family-names: Boland
+    orcid: 'https://orcid.org/0000-0002-0485-6768'
+repository-code: 'https://github.com/neboland/AqSpeciate'
+abstract: >-
+  Aqueous chemical equilibrium speciation solver for Excel
+  (VBA) that utilizes the tableau approach and uses a damped
+  Newton method with backtracking line search.
+keywords:
+  - Excel VBA
+  - ' Chemical Equilibrium'
+  - Speciation
+license: Apache-2.0
+version: 1.3c
+date-released: '2026-05-05'
