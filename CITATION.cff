@@ -9,6 +9,9 @@ authors:
     family-names: Boland
     orcid: 'https://orcid.org/0000-0002-0485-6768'
 repository-code: 'https://github.com/neboland/AqSpeciate'
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.20338879
 abstract: >-
   AqSpeciate is an aqueous chemical equilibrium speciation
   solver implemented as a user-defined function (UDF) for
