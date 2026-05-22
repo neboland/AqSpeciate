@@ -9,11 +9,13 @@
 
 ## Overview
 
-AqSpeciate performs aqueous chemical equilibrium speciation calculations directly within
-Microsoft Excel as a set of worksheet user-defined functions (UDFs). This project began with
-the desire to perform chemical equilibrium calculations directly within Excel rather than
-relying on input and output from external programs (e.g. HYDRAQL (Papelis et al., 1988),
-MINEQL (Westall et al., 1976)). The user-defined function developed here uses a chemical
+AqSpeciate performs aqueous chemical equilibrium speciation calculations directly and dynamically
+within Microsoft Excel as a set of worksheet user-defined functions (UDFs). AqSpeciate allows 
+chemical equilibrium calculations to be responsive to external calculations and vice versa.
+
+This project began with a desire to perform chemical equilibrium calculations directly within 
+Excel rather than relying on input and output from external programs (e.g. HYDRAQL (Papelis et al.,
+1988), MINEQL (Westall et al., 1976)). The user-defined function developed here uses a chemical
 equilibrium solver based on the traditional tableau approach (e.g. Morel and Hering, 1993)
 and adheres to the species classification system adopted in programs like HYDRAQL.
 
