@@ -15,11 +15,11 @@ identifiers:
 abstract: >-
   AqSpeciate is an aqueous chemical equilibrium speciation
   solver implemented as a user-defined function (UDF) for
-  Microsoft Excel (VBA). It solves the equilibrium
-  free-concentration distribution of dissolved components
-  and their associated complexes using the traditional
-  tableau approach (Morel and Hering, 1993) and the species
-  classification system adopted in programs such as HYDRAQL
+  Microsoft Excel (VBA). AqSpeciate allows chemical equilibrium 
+  calculations to be responsive to external calculations and 
+  vice versa. It solves the equilibrium speciation using the 
+  traditional tableau approach (Morel and Hering, 1993) using the
+  species classification system adopted in programs such as HYDRAQL
   (Papelis et al., 1988). The solver uses a damped Newton
   method with Armijo backtracking line search, Davies
   activity coefficients, and supports fixed solids (Type 3)
