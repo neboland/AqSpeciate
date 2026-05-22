@@ -1,6 +1,3 @@
-# This CITATION.cff file was generated with cffinit.
-# Visit https://bit.ly/cffinit to generate yours today!
-
 cff-version: 1.2.0
 title: AqSpeciate
 message: >-
@@ -13,13 +10,76 @@ authors:
     orcid: 'https://orcid.org/0000-0002-0485-6768'
 repository-code: 'https://github.com/neboland/AqSpeciate'
 abstract: >-
-  Aqueous chemical equilibrium speciation solver for Excel
-  (VBA) that utilizes the tableau approach and uses a damped
-  Newton method with backtracking line search.
+  AqSpeciate is an aqueous chemical equilibrium speciation
+  solver implemented as a user-defined function (UDF) for
+  Microsoft Excel (VBA). It solves the equilibrium
+  free-concentration distribution of dissolved components
+  and their associated complexes using the traditional
+  tableau approach (Morel and Hering, 1993) and the species
+  classification system adopted in programs such as HYDRAQL
+  (Papelis et al., 1988). The solver uses a damped Newton
+  method with Armijo backtracking line search, Davies
+  activity coefficients, and supports fixed solids (Type 3)
+  and considered solids (Type 5) with a greedy
+  precipitation loop. Activity coefficients are computed
+  using the Davies equation. The package includes three
+  worksheet UDFs: AqSpeciateAll (full solution row),
+  AqSpeciateOne (single-species scalar), and
+  AqSpeciateLabels (column header row).
 keywords:
   - Excel VBA
-  - ' Chemical Equilibrium'
+  - Chemical Equilibrium
   - Speciation
+  - Aqueous Chemistry
+  - Tableau Method
+  - Newton Solver
 license: Apache-2.0
-version: 1.3c
-date-released: '2026-05-05'
+version: 2.1b
+date-released: '2026-05-19'
+references:
+  - type: article
+    authors:
+      - family-names: Papelis
+        given-names: C.
+      - family-names: Hayes
+        given-names: K. F.
+      - family-names: Leckie
+        given-names: J. O.
+    title: >-
+      HYDRAQL: A program for the computation of chemical
+      equilibrium composition of aqueous batch systems
+      including surface-complexation modeling of ion
+      adsorption at the oxide/solution interface
+    year: 1988
+    institution:
+      name: >-
+        Department of Civil Engineering, Stanford University
+    notes: Technical Report 306
+  - type: article
+    authors:
+      - family-names: Westall
+        given-names: J.
+      - family-names: Zachary
+        given-names: J. L.
+      - family-names: Morel
+        given-names: F. M. M.
+    title: >-
+      MINEQL: A computer program for the calculation of
+      chemical equilibrium composition of aqueous systems
+    year: 1976
+    institution:
+      name: >-
+        Department of Civil Engineering, Massachusetts
+        Institute of Technology
+    notes: Technical Note 18
+  - type: book
+    authors:
+      - family-names: Morel
+        given-names: F. M. M.
+      - family-names: Hering
+        given-names: J. G.
+    title: Principles and Applications of Aquatic Chemistry
+    year: 1993
+    publisher:
+      name: Wiley
+      city: New York
