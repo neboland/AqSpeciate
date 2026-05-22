@@ -31,8 +31,10 @@ non-ideal activity using the Davies equation. It supports:
 
 ## How to cite this work
 
-> Boland, N. E. (2026). *AqSpeciate* (Version 2.1b) [Software].
-> https://github.com/neboland/AqSpeciate
+> Boland, N. E. (2026). *AqSpeciate* (Version 2.1b) [Software]. 
+> https://github.com/neboland/AqSpeciate doi.org/10.5281/zenodo.20338878
+
+[![DOI](https://zenodo.org/badge/1218415740.svg)](https://doi.org/10.5281/zenodo.20338878)
 
 See [`CITATION.cff`](CITATION.cff) for machine-readable citation metadata, including
 references to the foundational programs and methods that AqSpeciate builds upon.
