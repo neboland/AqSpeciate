@@ -91,7 +91,7 @@ For shared workbooks you may prefer to sign the VBA project or use a trusted loc
 Following the classification used by HYDRAQL, AqSpeciate uses five species types:
 
 | Type 	| Name 				| Description 	|
-|--- ---| --- --- --- --- --| --- --- --- --|
+|---|---|---|
 | **1** | Component 		| Independent chemical building block. Total concentration is a known input. |
 | **2** | Aqueous species 	| Formed from Type-1 components by a mass-action equilibrium. Concentration computed by the solver. |
 | **3** | Fixed solid 		| Always present; its Ksp constraint is enforced throughout the calculation, replacing the mass-balance equation of one component. |
@@ -201,7 +201,7 @@ pSI = -(logIAP - -logK_formation)
 ```
 
 |   pSI   |   SI   | Interpretation |
-| --- --- |--- --- |--- --- --- --- |
+|---|---|---|
 | pSI < 0 | SI > 0 | Supersaturated — solid will tend to precipitate |
 | pSI = 0 | SI = 0 | At equilibrium with solid |
 | pSI > 0 | SI < 0 | Undersaturated — solid will tend to dissolve |
@@ -278,7 +278,7 @@ computed I, and errors. Optionally appends solver diagnostics (Verbose=1).
 **Output column layout:**
 
 | Columns       | Content |
-| --- --- --- --| --- --- |
+|---|---|
 | 1 … nC        | p[component_free] = −log₁₀([Cᵢ_free]), sorted by ascending ID |
 | nC+1 … nC+nS  | p[species] = −log₁₀([Sⱼ]), sorted by ascending ID |
 | nC+nS+1 … +nF | SI for each fixed solid, sorted by ascending ID |
@@ -289,7 +289,7 @@ computed I, and errors. Optionally appends solver diagnostics (Verbose=1).
 When `Verbose = 1`, eight additional columns are appended:
 
 | Extra col | Content |
-|--- --- -- | --- --- |
+|---|---|
 |    +1     | IDs of precipitated considered solids, comma-separated string |
 |    +2     | Newton iteration count at convergence |
 |    +3     | Convergence precision (final residual L2-norm, mol/L) |
@@ -356,7 +356,7 @@ arguments to generate self-documenting column headers. Example labels:
 ### 4.4 Optional argument summary
 
 | Argument         | Default | Notes |
-|--- --- --- --- --| --- --- | --- --|
+|--- | --- | ---|
 | `OptionalPH` 	   | omitted | Pins H⁺ activity. H⁺ still required as first component. |
 | `OptionalTemp`   | 25 °C   | Modifies Davies A parameter. |
 | `OptionalIFixed` | omitted | Fixed ionic strength. Computed I is still reported and flagged if it exceeds IFixed. |
@@ -374,7 +374,7 @@ arguments to generate self-documenting column headers. Example labels:
 A range of **nC rows × 4 columns** containing:
 
 | Column | Content                                         | Example |
-|--- --- | --- --- --- --- --- --- --- --- --- --- --- --- | --- --- |
+|--- | ---  | ---  |
 |   1    | Integer Component ID                            | `50`    |
 |   2    | Initial log guess for free concentration        | `−7`    |
 |   3    | Total concentration (mol/L, **linear not log**) | `1E-4`  |
@@ -395,7 +395,7 @@ but must be unique and consistent with the IDs used in SpecRange.
 A range of **nS rows × (2 + nC) columns** containing:
 
 | Column   | Content |
-| --- ---  | --- --- |
+| ---  | --- |
 |    1     | Integer species ID |
 |    2     | Cumulative formation logK (from Type-1 components) |
 | 3 … 2+nC | Stoichiometric coefficients ν for each component, one column per component in the **same order as CompRange** |
@@ -431,7 +431,7 @@ All component and species outputs are **p-values**: p[X] = −log₁₀([X]), wh
 free molar concentration. This follows standard aqueous chemistry notation (e.g. pH = p[H⁺]).
 
 | p-value | Free concentration |
-| --- --- | --- --- --- --- ---|
+| --- | ---|
 |    3    | 1 mmol/L (1×10⁻³ mol/L)   |
 |    4    | 100 µmol/L (1×10⁻⁴ mol/L)  |
 |    7    | 100 nmol/L (1×10⁻⁷ mol/L)  |
@@ -460,7 +460,7 @@ generated during the solve. An empty string means no issues. Multiple alerts are
 by periods.
 
 | Code   | Meaning |
-|------  |---------|
+|---  |---------|
 | **E1** | H⁺ is not the first component — it must appear in row 1 of `CompRange` |
 | **E2** | No component with charge +1 found — H⁺ is missing entirely |
 | **E3** | `SpecRange` stoichiometry column count does not match nC |
@@ -475,8 +475,8 @@ by periods.
 | **E12** | `SpecRange` does not have at least 3 columns |
 | **E14** | Charge balance at convergence exceeds 5 % of total ionic charge (only reported when `IFixed` is **not** supplied; suppressed in fixed-I mode) |
 | **E15** | Zero total concentration for a non-solid-supplied component |
-| **E17** | OverrideCompID and OverrideConc must both be supplied or both omitted. Override not applied |
-| **E18** | A OverrideCompID does not match any component in CompRange. Override not applied |
+| **E17** | `OverrideCompID` and `OverrideConc` must both be supplied or both omitted. Override not applied |
+| **E18** | A `OverrideCompID` does not match any component in `CompRange`. Override not applied |
 | **E19** | Solid precipitation loop did not stabilise within 30 iterations |
 
 If the solver fails before output can be assembled, all p-value cells return 0 and the last
@@ -499,7 +499,7 @@ count). Use `AqSpeciateLabels` to confirm column assignments.
 
 ## 7. Worked examples
 
-### 7.1 Ethylenediamine (en) speciation — `EnExample.xlsx`
+### 7.1 Ethylenediamine (en) speciation
 
 **Problem:** Calculate the equilibrium speciation of 0.1 mmol/L ethylenediamine (en) in
 water at pH 5 and ionic strength I = 0.01 mol/L. What fraction of the total en is
@@ -511,20 +511,20 @@ H₂en²⁺ is expected to dominate.
 
 **Components:**
 
-| Row | ID  | Log-guess | Total (mol/L) | Charge | (Note)
-| --- | --- | --- --- --| --- --- --- --| --- ---|
-|  1  | 50  |    −4     |       0       |   +1   | (H⁺)
-|  2  | 166 |    −4     |     1E-4      |    0   | (en) 
+| Row | ID  | Log-guess | Total (mol/L) | Charge | (Note) |
+|---|---|---|---|---|--|
+|  1  | 50  |    −4     |       0       |   +1   | (H⁺) |
+|  2  | 166 |    −4     |     1E-4      |    0   | (en) |
 
 Note: H⁺ total is 0 because pH is fixed (the total is not used).
 
 **Species:**
 
-| ID    | logKf   | ν(H⁺)  | ν(en) | (Note) 
-| --- --| --- --- | --- --| --- ---|
-| 12900 |  9.928  |   +1  |   +1   | Hen⁺ 
-| 12910 | 16.776  |   +2  |   +1   | H₂en²⁺
-| 13595 | −13.997 |   −1  |    0   | OH⁻ 
+| ID    | logKf   | ν(H⁺)  | ν(en) | (Note) |
+| ---| --- | --- | --- | --- |
+| 12900 |  9.928  |   +1  |   +1   | Hen⁺ |
+| 12910 | 16.776  |   +2  |   +1   | H₂en²⁺|
+| 13595 | −13.997 |   −1  |    0   | OH⁻ |
 
 **Formula:**
 ```
@@ -534,7 +534,7 @@ Note: H⁺ total is 0 because pH is fixed (the total is not used).
 **Expected results:**
 
 | Output         | ID    | Value         | Result |
-| --- --- --- ---| --- --| --- --- --- --| --- ---|
+| --- | ---| ---| --- |
 | p[H⁺_free]     |   50  |  4.9553        | [H⁺_free] = 10⁻⁴·⁹⁵⁵³ mol/L (slightly differs from pH due to γH⁺ correction) |
 | p[en_free]     |  166  | 10.9594       | [en_free] = 1.1×10⁻¹¹ mol/L — essentially all en is complexed |
 | p[H₂en²⁺]       | 12910 |  4.0045       | [H₂en²⁺] = 9.9×10⁻⁵ mol/L ≈ 99% of total en |
@@ -549,7 +549,7 @@ protonated at this pH. The computed mass balance: 10⁻¹⁰·⁹⁶ + 10⁻⁵�
 
 ---
 
-### 7.2 Nickel–NTA–ethylenediamine system — `NiNTAEnExample.xlsx`
+### 7.2 Nickel–NTA–ethylenediamine system
 
 **Problem:** Calculate the equilibrium speciation of a mixture containing Ni²⁺, NTA³⁻
 (nitrilotriacetic acid), and ethylenediamine (en) at pH 5, I = 0.01 mol/L. Determine
@@ -561,35 +561,35 @@ competition for both NTA and en is significant.
 
 **Components:**
 
-| ID  | Log-guess | Total (mol/L) | Charge | (Note)
-| --- | --- --- --| --- --- --- --| --- ---|
-|  50 |     -5    | 0 (pH-pinned) |    1   | (H⁺) 
-|  13 |    -12    | 5.00E-05      |    2   | (Ni²⁺) 
-| 165 |     -5    | 7.50E-05      |   -3   | (NTA³⁻)
-| 121 |     -8    | 5.00E-04      |    0   | (en) 
+| ID  | Log-guess | Total (mol/L) | Charge | (Note)|
+| --- | --- | --- | ---|---|
+|  50 |     -5    | 0 (pH-pinned) |    1   | (H⁺) |
+|  13 |    -12    | 5.00E-05      |    2   | (Ni²⁺)| 
+| 165 |     -5    | 7.50E-05      |   -3   | (NTA³⁻)|
+| 121 |     -8    | 5.00E-04      |    0   | (en) |
 
 **Species:**
 
-| ID    | log Kf | ν(H⁺) | ν(Ni²⁺) | ν(NTA³⁻) | ν(en) | Note
-| --- --| --- ---| ---  | --- --- | --- --- | --- ---|
-| 7590  |  -9.9  | -1   |    1    |		    |    	 | (NiOH+)
-| 7491	| -19    | -2   |    1    |		    |    	 | (Ni(OH)2)
-| 7492	| -30    | -3   |    1    |		    |    	 | (Ni(OH)3-)
-| 7494	| -27.7  | -4   |    4    |		    |    	 | (Ni4(OH)4 4+)
-| 7510	| 12.79	 |      |    1    |    1    |    	 | (NiNTA)
-| 7511	| 16.96	 |      |    1    |    2    |    	 | (Ni(NTA)2)
-| 7512	| 1.51   | -1   |    1    |    1    |    	 | (Ni(OH)NTA)
-| 7513	| 19.99	 |      |    1    |    1    |    1	 | (NiNTA(en))
-| 7520	| 10.1	 |  1   |         |    1    |    	 | (H-NTA)
-| 7521	| 13.05  |  2   |         |    1    |    	 | (H2NTA)
-| 7522	| 15.07	 |  3   |         |    1    |    	 | (H3NTA)
-| 7523	| 16	 |  4   |         |    1    |    	 | (H4NTA)
-| 7610	| 7.32	 |      |    1    |         |   1	 | (Ni(en))
-| 7611	| 13.5	 |      |    1    |         |   2    | (Ni(en)2)
-| 7612	| 17.61	 |      |    1    |         |   3    | (Ni(en)3)
-| 7620	| 9.928	 |  1   |         |         |   1    | (H(en))
-| 7621	| 16.78	 |  2   |         |         |   1    | (H2(en))
-| 13595 |-13.997 | -1   |         |         |        | (OH-)
+| ID    | log Kf | ν(H⁺) | ν(Ni²⁺) | ν(NTA³⁻) | ν(en) | Note|
+| ---| ---| ---  | --- | --- |  ---|---|
+| 7590  |  -9.9  | -1   |    1    |		    |    	 | (NiOH+)|
+| 7491	| -19    | -2   |    1    |		    |    	 | (Ni(OH)2)|
+| 7492	| -30    | -3   |    1    |		    |    	 | (Ni(OH)3-)|
+| 7494	| -27.7  | -4   |    4    |		    |    	 | (Ni4(OH)4 4+)|
+| 7510	| 12.79	 |      |    1    |    1    |    	 | (NiNTA)|
+| 7511	| 16.96	 |      |    1    |    2    |    	 | (Ni(NTA)2)|
+| 7512	| 1.51   | -1   |    1    |    1    |    	 | (Ni(OH)NTA)|
+| 7513	| 19.99	 |      |    1    |    1    |    1	 | (NiNTA(en))|
+| 7520	| 10.1	 |  1   |         |    1    |    	 | (H-NTA)|
+| 7521	| 13.05  |  2   |         |    1    |    	 | (H2NTA)|
+| 7522	| 15.07	 |  3   |         |    1    |    	 | (H3NTA)|
+| 7523	| 16	 |  4   |         |    1    |    	 | (H4NTA)|
+| 7610	| 7.32	 |      |    1    |         |   1	 | (Ni(en))|
+| 7611	| 13.5	 |      |    1    |         |   2    | (Ni(en)2)|
+| 7612	| 17.61	 |      |    1    |         |   3    | (Ni(en)3)|
+| 7620	| 9.928	 |  1   |         |         |   1    | (H(en))|
+| 7621	| 16.78	 |  2   |         |         |   1    | (H2(en))|
+| 13595 |-13.997 | -1   |         |         |        | (OH-)|
 
 **Formula:**
 ```
@@ -599,7 +599,7 @@ competition for both NTA and en is significant.
 **Expected results (selected):**
 
 | Output       | ID   | Value | Result  |
-| --- --- ---  | ---  | --- --| --- --- --- --- |---|
+| ---  | ---  | --- | --- |
 | p[Ni²⁺_free]  |  13  | 7.076 | [Ni²⁺_free] = 8.4×10⁻⁸ (mol/L)|
 | p[NTA³⁻_free] |  165 | 9.480 | [NTA³⁻_free] = 3.3×10⁻¹⁰ (mol/L)|
 | p[en_free]   |  121 | 10.265 | [en_free] = 5.4×10⁻¹¹ (mol/L)|
@@ -624,7 +624,7 @@ The solver handles all 18 species and 4 components simultaneously in a single ca
 
 ---
 
-### 7.3 Lead–carbonate–oxalate system with solids — `PbCO3OXExample.xlsx`
+### 7.3 Lead–carbonate–oxalate system with solids
 
 **Problem:** Calculate the equilibrium speciation of Pb²⁺ in a carbonate/oxalate system
 at fixed pH and ionic strength, in the presence of a fixed PbCO_3(am) solid and
@@ -635,42 +635,42 @@ and Ox²⁻. PbCO_3(am) solid is present (supplying Pb²⁺ and CO₃²⁻).
 
 **Components:**
 
-| ID  | Log-guess | Total (mol/L) | Charge | (Note)
-| --- | --- --- --| --- --- --- --| --- ---|
-|  50 |    -9     | 0 (pH-pinned) |   1    | (H⁺) 
-|  15 |   -12     |      0        |   2    | (Pb²⁺) 
-| 101 |   -10     |      0        |  −2    | (CO₃²⁻)
-| 118 |   -10     |    1E-04      |  −2    | (Ox²⁻)
+| ID  | Log-guess | Total (mol/L) | Charge | (Note)|
+| --- | ----| ----| --- |--- |
+|  50 |    -9     | 0 (pH-pinned) |   1    | (H⁺) |
+|  15 |   -12     |      0        |   2    | (Pb²⁺) |
+| 101 |   -10     |      0        |  −2    | (CO₃²⁻)|
+| 118 |   -10     |    1E-04      |  −2    | (Ox²⁻)|
 
 **Species:**
 
-| ID    | log Kf  | ν(H⁺) | ν(Pb²⁺) | ν(CO₃²⁻) | ν(Ox²⁻) | Note
-| --- --| --- --- | --- --| --- ---| --- --- | --- --- |
-|  8001 |   4.2   |       |   1    |         |    1    | (PbOx)
-|  8002 |   6.31  |       |   1    |         |    2    | (PbOx2)
-|  8003 |   5.63  |   1   |   1    |         |    1    | (PbHOx)
-|  8009 |   3.8   |   1   |        |         |    1    | (HOx)
-|  8011	|   5     |   2   |        |         |    1    | (H2Ox)
-|  8013 |   7.4   |       |   1    |    1    |         | (PbCO3)
-|  8014 |  10.8   |       |   1    |    2    |         | (PbCO32)
-|  8520 |  -7.1   |  -1   |   1    |         |         | (PbOH)
-|  8530 | -16.5   |  -2   |   1    |         |         | (PbOH2)
-|  8540 | -27.4   |  -3   |   1    |         |         | (PbOH3)
-|  8550 |  -6.3   |  -1   |   2    |         |         | (Pb2OH)
-|  8551 |   9.9   |   1   |        |    1    |         | (HCO3)
+| ID    | log Kf  | ν(H⁺) | ν(Pb²⁺) | ν(CO₃²⁻) | ν(Ox²⁻) | Note|
+| ---| ---| ---| ---| --- | --- | --- |
+|  8001 |   4.2   |       |   1    |         |    1    | (PbOx)|
+|  8002 |   6.31  |       |   1    |         |    2    | (PbOx2)|
+|  8003 |   5.63  |   1   |   1    |         |    1    | (PbHOx)|
+|  8009 |   3.8   |   1   |        |         |    1    | (HOx)|
+|  8011	|   5     |   2   |        |         |    1    | (H2Ox)|
+|  8013 |   7.4   |       |   1    |    1    |         | (PbCO3)|
+|  8014 |  10.8   |       |   1    |    2    |         | (PbCO32)|
+|  8520 |  -7.1   |  -1   |   1    |         |         | (PbOH)|
+|  8530 | -16.5   |  -2   |   1    |         |         | (PbOH2)|
+|  8540 | -27.4   |  -3   |   1    |         |         | (PbOH3)|
+|  8550 |  -6.3   |  -1   |   2    |         |         | (Pb2OH)|
+|  8551 |   9.9   |   1   |        |    1    |         | (HCO3)|
 |  8552 |  16.03  |   2   |        |    1    |         | (H2CO3)
 | 13595 | -13.997 |  -1   |        |         |         | (OH-)
 
 **Fixed solid:**
 
 | ID    | log Kf  | ν(H⁺) | ν(Pb²⁺) | ν(CO₃²⁻) | ν(Ox²⁻) | Note
-| --- --| --- --- | --- --| --- ---| --- --- | --- --- |
+| -----| ------ | -----| -----| ------ | --- |--- |
 | 20780 |  13.5   |       |   +1   |   +1    |         | (PbCO_3(am)}
 
 **Considered solids:**
 
-| ID    | log Kf  | ν(H⁺) | ν(Pb²⁺) | ν(CO₃²⁻) | ν(Ox²⁻) | Note
-| --- --| --- --- | --- --| --- ---| --- --- | --- --- |
+| ID    | log Kf  | ν(H⁺) | ν(Pb²⁺) | ν(CO₃²⁻) | ν(Ox²⁻) | Note |
+| -----| ----- | ----| -----| ---- | ------ |--- |
 | 20790 |  19.4   |  −2   |    3   |    2    |    0    | (Pb3(OH)2CO3)
 | 20910 |  −7.3   |  −2   |    1   |    0    |    0    | (Pb(OH)2(am))
 | 20911 |   8.02  |   0   |    1   |    0    |    1    | (PbOx) 
@@ -683,7 +683,7 @@ and Ox²⁻. PbCO_3(am) solid is present (supplying Pb²⁺ and CO₃²⁻).
 **Expected results (selected):**
 
 | Output                 | ID    | Value | Result  |
-| --- --- --- --- --- ---| ---   | --- --| --- --- |
+| ------| ---   | -----| ---- |
 | p[Pb²⁺]                |   15  | 10.16 | Free Pb²⁺ is very low — controlled by PbOH2 Ksp at pH 9 |
 | p[CO₃²⁻]                |  101  |  2.26  | Much carbonate remains in solution  |
 | SI[PbCO3(am)]          | 20780 | -0.69 |(fixed precipitate), slightly supersaturated |
@@ -730,7 +730,8 @@ misaligned if components or species are added.
 
 ---
 
-## 8. Troubleshooting (see Error Codes in §6.4) 
+## 8. Troubleshooting 
+(see Error Codes in §6.4) 
 
 ### `#VALUE!` error
 
@@ -790,7 +791,7 @@ p[H⁺_free] ≈ pH + 0.044.
 ## 9. Limitations
 
 | Constraint | Detail |
-| --- --- ---| --- ---|
+| ----| -----|
 | **Ionic strength range** | Davies equation is reliable for I < ~0.5 mol/L. Supply a fixed I estimated independently for saline systems. |
 | **H⁺ identification** | H⁺ must be the first component (row 1 of CompRange) with charge +1. |
 | **Temperature range** | The Davies A parameter approximation is reliable from ~0–60 °C. |
