@@ -89,14 +89,14 @@ and troubleshooting guidance.
 
 | File | Description |
 |---|---|
+| `AqSpeciateV2_1b.bas` | VBA package — import into Excel module |
 | `AqSpeciateV2_1b.txt` | VBA source code — paste into an Excel module |
 | `AqSpeciateV2_1b.xlam` | Excel Add-in File containing VBA code |
+| `CITATION.cff` | Machine-readable citation metadata |
+| `LICENSE.md` | Apache 2.0 License notice |
+| 'README.md' | This file |
 | `USER_MANUAL.md` | Full user manual with worked examples |
 | `RELEASE_NOTES.md` | Version history and change log |
-| `CITATION.cff` | Machine-readable citation metadata |
-| `EnExample.xlsx` | Worked example: ethylenediamine / H⁺ system |
-| `NiNTAEnExample.xlsx` | Worked example: Ni²⁺ / NTA / ethylenediamine system |
-| `PbCO3OXExample.xlsx` | Worked example: Pb²⁺ / carbonate / oxalate with solids |
 
 ---
 
@@ -138,7 +138,7 @@ Morel and Hering (1993). Key features:
 ## AI Attribution
 
 This project was developed collaboratively between humans and artificial intelligence:
-* **Human Contributions:** Initial project concept, core feature design, bug testing, validation, and final review. 
+* **Human Contributions:** Initial project concept, core feature design, bug testing, validation, and final review/edits. 
 * **AI Assistance:** [Claude Sonnet 4.6](https://www.anthropic.com/news/claude-sonnet-4-6) were utilized to generate code, optimize performance, and draft documentation.
 
 ---
