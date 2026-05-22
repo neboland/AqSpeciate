@@ -22,7 +22,7 @@ Option Explicit
 '
 ' Boland, N. E. (2026). AqSpeciate (Version 2.1b) [Software].
 ' https://github.com/neboland/AqSpeciate
-' https://doi.org/10.5281/zenodo.XXXXXXX   (replace with actual DOI)
+' https://doi.org/10.5281/zenodo.20338879
 '
 ' See CITATION.cff in the repository root for machine-readable metadata.
 '
