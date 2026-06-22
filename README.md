@@ -96,6 +96,7 @@ and troubleshooting guidance.
 | `AqSpeciateV2_1b.bas` | VBA package — import into Excel module |
 | `AqSpeciateV2_1b.txt` | VBA source code — paste into an Excel module |
 | `AqSpeciateV2_1b.xlam` | Excel Add-in File containing VBA code |
+| `AqSpeciate_Demo.xlsm` | Excel Macro File containing worked examples to demo AqSpeciate Funcitons |
 | `CITATION.cff` | Machine-readable citation metadata |
 | `LICENSE.md` | Apache 2.0 License notice |
 | 'README.md' | This file |
